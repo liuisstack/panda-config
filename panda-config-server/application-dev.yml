@@ -1,0 +1,30 @@
+    
+spring.cloud.config.allow-override: true
+spring.cloud.config.override-none: true
+spring.cloud.config.override-system-properties: false
+
+server:
+  port: 6671
+spring:
+  application:
+    name: panda-config-server
+  profiles:
+    active: dev
+  cloud:
+    config:
+      discovery:
+        enabled: true
+      server:
+        git:
+          uri: https://github.com/liuisstack/panda-config/
+          # 代码分支
+          default-label: master
+          searchPaths: panda-auth,panda-gateway,panda-message-service,panda-user-service,anda-zipkin,panda-config-server
+          username: liuisstack
+          password: 9980aaAA
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    service-url:
+      defaultZone: http://panda-server:8761/eureka/
